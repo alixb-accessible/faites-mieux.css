@@ -1,6 +1,6 @@
 /* Faites Mieux - Toolbar d'accessibilité universelle
    Par Ti Racoon
-   Version 1.0
+   Version 2.1 - Bouton compact + sans emojis
 */
 
 /* POLICES ACCESSIBLES */
@@ -28,7 +28,7 @@
   --fm-z: 2147483000;
 }
 
-/* Bouton d'ouverture - À GAUCHE */
+/* Bouton d'ouverture - Version compacte et déplaçable */
 #fm-toggle-btn {
   position: fixed;
   top: 12px;
@@ -37,18 +37,52 @@
   background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
   color: white;
   border: none;
-  padding: 12px 20px;
+  padding: 10px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  cursor: pointer;
+  cursor: move;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
   font-family: var(--fm-font);
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+}
+
+#fm-toggle-btn.dragging {
+  transition: none;
+  cursor: grabbing;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+#fm-toggle-btn.compact {
+  width: 44px;
+}
+
+#fm-toggle-btn.expanded {
+  width: auto;
+  padding: 12px 20px;
+}
+
+#fm-toggle-btn .btn-text-full {
+  display: none;
+}
+
+#fm-toggle-btn.expanded .btn-text-compact {
+  display: none;
+}
+
+#fm-toggle-btn.expanded .btn-text-full {
+  display: inline;
 }
 
 #fm-toggle-btn:hover {
-  transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
 
@@ -57,12 +91,12 @@
   outline-offset: 2px;
 }
 
-/* Toolbar container - À GAUCHE */
+/* Toolbar container */
 #fm-toolbar {
   font-family: var(--fm-font);
   position: fixed;
   left: 12px;
-  top: 60px;
+  top: 68px;
   z-index: var(--fm-z);
   width: 380px;
   max-width: calc(100% - 24px);
@@ -74,7 +108,7 @@
   color: #000;
   font-size: 0.95rem;
   display: none;
-  max-height: calc(100vh - 80px);
+  max-height: calc(100vh - 88px);
   overflow-y: auto;
 }
 
@@ -87,7 +121,7 @@
     left: 12px; 
     right: 12px; 
     width: auto; 
-    top: 60px; 
+    top: 68px; 
   }
   #fm-toggle-btn { 
     left: 12px; 
@@ -118,6 +152,8 @@
   font-size: 1.5rem; 
   color: #000; 
   line-height: 1;
+  min-width: 32px;
+  min-height: 32px;
 }
 
 #fm-toolbar .fm-close:hover { 
@@ -225,6 +261,14 @@ input[type="range"]:focus {
   outline-offset: 2px; 
 }
 
+.fm-btn.fm-btn-secondary {
+  background: #6c757d;
+}
+
+.fm-btn.fm-btn-nvda {
+  background: #9933cc;
+}
+
 .fm-value { 
   min-width: 48px; 
   text-align: right; 
@@ -233,12 +277,19 @@ input[type="range"]:focus {
   font-size: 0.9rem;
 }
 
+.fm-voice-info {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+  font-style: italic;
+}
+
 /* Classes appliquées au body pour l'accessibilité */
 body.fm-applied {
   transition: filter 0.3s ease;
 }
 
-/* Thèmes - appliqués via classes sur le body */
+/* Thèmes */
 body.fm-theme-dark {
   filter: invert(1) hue-rotate(180deg);
 }
