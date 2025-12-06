@@ -1,6 +1,6 @@
 /* Faites Mieux - Toolbar d'accessibilité universelle
    Par Ti Racoon
-   Version 2.1 - Bouton compact + sans emojis
+   Version 2.1 - Bouton compact + sans emojis - CORRIGÉ
 */
 
 /* POLICES ACCESSIBLES */
@@ -70,7 +70,20 @@
   padding: 12px 20px;
 }
 
+/* Gestion de l'affichage du texte */
 #fm-toggle-btn .btn-text-full {
+  display: none;
+}
+
+#fm-toggle-btn .btn-text-compact {
+  display: none;
+}
+
+#fm-toggle-btn.compact .btn-text-compact {
+  display: inline;
+}
+
+#fm-toggle-btn.compact .btn-text-full {
   display: none;
 }
 
